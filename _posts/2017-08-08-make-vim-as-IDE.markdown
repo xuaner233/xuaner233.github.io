@@ -27,14 +27,14 @@ sudo apt-get install ctags
 进入工程顶层目录，使用下面命令产生ctags文件用于快速检索
 
 ```
-$ ctags -R --c++kinds=+p --fields=+iaS --extra=+q ./
+$ ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ./
 ```
 
 ctags参数：
 
 - \-R:				递归生成
 
-- \-\-c++kinds=+p:	C++ 语法
+- \-\-c++-kinds=+p:	C++ 语法
 
 - \-\-fields=+iaS:	指定tags的可用拓展域，具体参数如下
 
@@ -236,4 +236,4 @@ nmap <F10>   :TrinityToggleAll<CR>
 
 
 ### 至此，vim 设置已全部完成，完成后效果如下图：
-![Vim IDE]({{ "/imgs/vim_IDE.png" | absolute_url }})
+![Vim IDE](/imgs/vim_IDE.png)
