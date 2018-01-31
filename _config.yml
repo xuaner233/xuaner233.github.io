@@ -16,10 +16,10 @@
 title: Xiaoxuan Liu
 email: xiaoxuan.liu.work@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Xiaoxuan's blog, just some skill record.
-baseurl: "" # the subpath of your site, e.g. /blog
+  Xiaoxuan's blog, just some skills.
+baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: None
+linkedin_username: None
 github_username:  xuaner233
 
 # Sidebar settings

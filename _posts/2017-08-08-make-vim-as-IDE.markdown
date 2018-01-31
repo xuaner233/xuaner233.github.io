@@ -1,15 +1,15 @@
 ---
 layout: post
 title:  "Make VIM a IDE (Source Insight)"
+subtitle: 将 vim 打造成自己的 IDE
 date:	2017-08-08
-categories: jekyll update
+categories: jekyll blog
 ---
 
 
 
 
 ***
-# 将 vim 打造成自己的 IDE
 
 
 ### 插件列表：ctags + cscope + taglist + NERDTree + srcexpl + trinity
