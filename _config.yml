@@ -28,7 +28,7 @@ sidebar-about-description: Seek more!
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-cayman
+theme: minima
 gems:
   - jekyll-feed
 
