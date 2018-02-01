@@ -237,3 +237,8 @@ nmap <F10>   :TrinityToggleAll<CR>
 
 ### 至此，vim 设置已全部完成，完成后效果如下图：
 ![Vim IDE](/imgs/vim_IDE.png)
+
+
+***
+**最后，感谢 `ivan7645` 提供的参考**
+> 原文链接：http://ivan7645.github.io/2016/07/12/vim_to_si/
