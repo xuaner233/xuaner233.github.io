@@ -1,45 +1,97 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Xiaoxuan Liu
-email: xiaoxuan.liu.work@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Xiaoxuan's blog, just some skills.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-linkedin_username: None
-github_username:  xuaner233
+title: Xiaoxuan Blog
+SEOTitle: 小旋的博客 | Xiaoxuan Blog
+header-img: img/home-bg.jpg
+email: huxpro@gmail.com
+description: "小旋的世界 | Xiaoxuan world"
+keyword: "Xiaoxuan, blog, 技术笔记"
+url: ""        # your host, for absolute URL
+baseurl: ""    # for example, '/blog' if your blog hosted on 'host/blog'
 
-# Sidebar settings
-sidebar: true
-sidebar-about-description: Seek more!
+
+
+# SNS settings
+RSS: false
+#weibo_username:     Alex-重生的小旋
+#zhihu_username:     无名氏匆匆过客
+github_username:    xuaner233
+#twitter_username:   huxpro
+#facebook_username:  huxpro
+#linkedin_username:  firstname-lastname-idxxxx
+
+
 
 # Build settings
-markdown: kramdown
-theme: minima
-gems:
-  - jekyll-feed
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+input: GFM                            # use Github Flavored Markdown !important
+
+
+
+# Disqus settings
+disqus_username: 
+
+# Netease setttings
+netease_comment: false
+
+
+
+# Analytics settings
+# Baidu Analytics 
+# ba_track_id: [your track id]
+
+# Google Analytics
+ga_track_id: ''            # Format: UA-xxxxxx-xx
+ga_domain: 
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "写写代码，看看世界，<br>所见即所得"
+sidebar-avatar: /imgs/avatar-xuan.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+
+# Friends
+friends: [
+    {
+    #     title: "Su",
+    #     href: "http://su.gallery/"
+    # },
+    # {
+        title: "Xiaoxuan",
+        href: "http://xuaner233.github.io"
+    }
+]

@@ -1,19 +1,19 @@
 ---
-layout: post
-title:  "Deploy your own Opengrok"
-subtitle: 大型项目代码浏览利器 之 Opengrok
-date:	2018-01-31
-author: Xiaoxuan Liu
-header-img: http://oracle.github.io/opengrok/images/opengrok-scr1.png
-categories: jekyll blog
+layout:      post
+title:       "Deploy your own Opengrok"
+subtitle:    "大型项目代码浏览利器 之 Opengrok"
+date:	       2018-01-31
+author:      "Xiaoxuan Liu"
+header-img:  "http://oracle.github.io/opengrok/images/opengrok-scr1.png"
+header-mask: 0.3
+catalog:     true
+tags:
+    - Opengrok
+    - Tomcat
+    - Ubuntu
 ---
 
-
-
-
 ***
-
-#### 关键词：Opengrok，Tomcat，多项目，Ubuntu
 
 ### [Opengrok](http://oracle.github.io/opengrok/) 正如它自己的介绍所说：
 > A wicked fast source browser
@@ -136,10 +136,10 @@ index 即建立索引，时间根据项目源码大小而定，一般情况Andro
 StdInvocation()
 {
     CommonInvocation		\
-    -W ${XML_CONFIGURATION}	\
+	-W ${XML_CONFIGURATION}	\
 	${SCAN_FOR_REPOSITORY}	\
 	${ENABLE_PROJECTS}	\
-    -s "${SRC_ROOT}"	\
+	-s "${SRC_ROOT}"	\
 	-d "${DATA_ROOT}"	\
 	# add support for webapp name config
 	-w ${OPENGROK_WEBAPP_NAME} \ 
@@ -153,13 +153,13 @@ StdInvocation()
 
 ```
 src_root
-	|-- android
-			|-- android-8.0.0_r1
-			|-- android-8.1.0_r1
-			`-- android-o-mr1-fsk
-	`-- kernels
-			|-- android-hikey-linaro-4.4
-			`-- android-hikey-linaro-4.9
+ |-- android
+      |-- android-8.0.0_r1
+      |-- android-8.1.0_r1
+      `-- android-o-mr1-fsk
+ `-- kernels
+      |-- android-hikey-linaro-4.4
+      `-- android-hikey-linaro-4.9
 
 ```
 
