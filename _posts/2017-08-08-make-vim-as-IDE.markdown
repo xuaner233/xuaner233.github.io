@@ -1,13 +1,17 @@
 ---
-layout: post
-title:  "Make VIM a IDE (Source Insight)"
-subtitle: 将 vim 打造成自己的 IDE
-date:	2017-08-08
-categories: jekyll blog
+layout:      post
+title:       "Make VIM a IDE (Source Insight)"
+subtitle:    "将 vim 打造成自己的 IDE"
+date:	       2017-08-08
+author:      "Xiaoxuan Liu"
+header-img:  ""
+header-mask: 0.3
+catalog:     true
+tags:
+    - VIM
+    - IDE
+    - Ubuntu
 ---
-
-
-
 
 ***
 
