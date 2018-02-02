@@ -7,6 +7,8 @@ author:      "Xiaoxuan Liu"
 header-img:  ""
 header-mask: 0.3
 catalog:     true
+categories:
+    - 实用工具
 tags:
     - Opengrok
     - Tomcat
