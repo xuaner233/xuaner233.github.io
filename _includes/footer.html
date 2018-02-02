@@ -83,11 +83,17 @@
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="100px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
-                    </iframe>
+                    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    <!-- Add count for site and page staticstics -->
+                    {% if page.catalog %}
+                        <span id="busuanzi_container_page_pv">
+                            您是本文第 <span id="busuanzi_value_page_pv"></span> 位小伙伴
+                        </span>
+                    {% else %}
+                        <span id="busuanzi_container_site_uv">
+                            您是本站第 <span id="busuanzi_value_site_uv"></span> 位小伙伴
+                        </span>
+                    {% endif %}
                 </p>
             </div>
         </div>

@@ -4,7 +4,7 @@ title:       "Deploy your own Opengrok"
 subtitle:    "大型项目代码浏览利器 之 Opengrok"
 date:	       2018-01-31
 author:      "Xiaoxuan Liu"
-header-img:  "http://oracle.github.io/opengrok/images/opengrok-scr1.png"
+header-img:  ""
 header-mask: 0.3
 catalog:     true
 tags:
