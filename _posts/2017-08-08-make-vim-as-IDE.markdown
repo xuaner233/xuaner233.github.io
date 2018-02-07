@@ -241,7 +241,7 @@ nmap <F10>   :TrinityToggleAll<CR>
 ```
 
 
-### 至此，vim 设置已全部完成，完成后效果如下图：
+**至此，vim 设置已全部完成，完成后效果如下图：**
 ![Vim IDE](/imgs/vim_IDE.png)
 
 

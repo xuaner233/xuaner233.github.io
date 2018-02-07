@@ -32,21 +32,22 @@ tags:
 
 ***
 
-# Part 1： 安装
+## Part 1： 安装
 
-### 安装列表： 
+**安装列表:**
+
 - exuberant-ctags
 - JDK8
 - Tomcat
 - Opengrok
 
-## exuberant-ctags
+### exuberant-ctags
 
 ```
 sudo apt-getinstall exuberant-ctags
 ```
 
-## JDK 8
+### JDK 8
 本次安装JDK 版本为1.8，采用源安装方式：
 
 ```
@@ -58,7 +59,7 @@ sudo apt-get install oracle-java8-set-default
 
 > 注：webupd8 网站提供许多稳定packages，受信任程度较高，此处直接采用源安装
 
-## Tomcat
+### Tomcat
 
 从官网下载Tomcat 安装包(我用的是8.5.20版本)至本地：[Tomcat](http://tomcat.apache.org/)
 并解压至(建议） `/opt/` 路径下。
@@ -74,9 +75,9 @@ sudo apt-get install oracle-java8-set-default
 
 ![Tomcat welcome](/imgs/tomcat-startup.png)
 
-## Opengrok
+### Opengrok
 
-### 安装
+#### 安装
 
 > 官方链接：https://github.com/oracle/opengrok/wiki/How-to-install-OpenGrok
 
@@ -84,7 +85,7 @@ sudo apt-get install oracle-java8-set-default
 
 这时，访问 http://localhost:8080/source/ 即可看到 **Opengrok** 的默认搜索界面。
 
-### 索引流程（详细见下文 Part2 部分）
+#### 索引流程（详细见下文 Part2 部分）
 进入Opengrok 安装目录下的 `bin` 目录下，然后部署，索引：
 
 ```
@@ -96,7 +97,7 @@ index 即建立索引，时间根据项目源码大小而定，一般情况Andro
 
 ***
 
-# Part 2：部署
+## Part 2：部署
 
 在使用Opengrok进行多项目部署时，将各个项目的源代码放到不同目录，分成不同 Project 来分别索引是比较好的解决方案。在多项目部署过程中，有些关键参数需要进行设置，如下表：
 
@@ -123,7 +124,7 @@ index 即建立索引，时间根据项目源码大小而定，一般情况Andro
 
 ### 2. 配置 `OpenGrok` 脚本，增加 OPENGROK\_WEBAPP\_NAME 支持
 
-1) OpenGrok脚本中默认不支持新的webapp name，因此需在 `bin/OpenGrok` 脚本中添加变量 OPENGROK\_WEBAPP\_NAME。
+##### 1) OpenGrok脚本中默认不支持新的webapp name，因此需在 `bin/OpenGrok` 脚本中添加变量 OPENGROK\_WEBAPP\_NAME。
 
 ```bash
     OPENGROK_INSTANCE_BASE="${OPENGROK_INSTANCE_BASE:-/var/opengrok}"
@@ -132,7 +133,7 @@ index 即建立索引，时间根据项目源码大小而定，一般情况Andro
     LOGGER_CONFIG_FILE="logging.properties"
 ```
 
-2) 在 `bin/OpenGrok` 中的 `StdInvocation()` 函数中添加 “-w ${OPENGROK\_WEBAPP\_NAME}” 参数（即启动 Java -jar opengrok.jar的时候加入参数）。
+##### 2) 在 `bin/OpenGrok` 中的 `StdInvocation()` 函数中添加 “-w ${OPENGROK\_WEBAPP\_NAME}” 参数（即启动 Java -jar opengrok.jar的时候加入参数）。
 
 ```bash
 StdInvocation()
@@ -165,7 +166,7 @@ src_root
 
 ```
 
-#### 1） 根据源码目录建立索引：
+##### 1） 根据源码目录建立索引：
 
 ***Android***
 
@@ -191,7 +192,7 @@ export OPENGROK_VERBOSE=true
 /opt/opengrok/opengrok-1.1-rc14/bin/OpenGrok index /opt/opengrok/src_root/kernels
 ```
 
-#### 2） 更新Tomcat webapp 目录
+##### 2） 更新Tomcat webapp 目录
 
 将tomcat 安装目录 webapps 目录下（/opt/tomcat/apache-tomcat-8.5.20/webapps）的`source.war` 分别复制命名为 `android.war` 和 `kernels.war`，tomcat 会根据新的`.war`文件生成相应的网页目录。
 
@@ -210,7 +211,7 @@ webapps
 `-- source.war
 ```
 
-#### 3） 修改每个project 目录下的 `WEB-INF/web.xml` 文件，指定 Opengrok 的 configuration.xml。
+##### 3） 修改每个project 目录下的 `WEB-INF/web.xml` 文件，指定 Opengrok 的 configuration.xml。
 
 `android/WEB-INF/web.xml` 和 `kernels/WEB-INF/web.xml` 文件中的：
 
@@ -231,6 +232,7 @@ webapps
 **至此，多项目 Opengrok 部署完成，可分别浏览 http://localhost:8080/android 或 http://localhost:8080/kernels 进行访问使用。**
 
 ***
+
 ### 后记： 附上个人使用的 `index` 脚本，仅供参考
 
 ```bash
