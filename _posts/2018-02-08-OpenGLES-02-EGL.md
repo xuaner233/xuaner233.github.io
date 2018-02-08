@@ -39,12 +39,12 @@ EGLint minorVersion;
 EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 if (display == EGL_NO_DISPLAY)
 {
-	// Unable to open connection to local window system
+	/* Unable to open connection to local window system */
 }
 
 if (!eglInitialize(display, &majorVersion, &minorVersion))
 {
-	// Unable to init EGL
+	/* Unable to init EGL */
 }
 
 ```
@@ -130,22 +130,22 @@ EGLint attribList[] =
 
 EGLSurface window = eglCreateWindowSurface(display, config, nativeWindow, attribList);
 
-// check if window create success
+/* check if window create success */
 if (window == EGL_NO_SURFACE)
 {
 	switch (eglGetError())
 	{
 		case EGL_BAD_MATCH:
-			// check window and EGLConfig attributes
+			/* check window and EGLConfig attributes */
 			break;
 		case EGL_BAD_CONFIG:
-			// verify if EGLConfig valid
+			/* verify if EGLConfig valid */
 			break;
 		case EGL_BAD_NATIVE_WINDOW:
-			// verify if EGLNativeWindow valid
+			/* verify if EGLNativeWindow valid */
 			break;
 		case EGL_BAD_ALLOC:
-			// resources shortage
+			/* resources shortage */
 			break;
 	}
 }
@@ -217,40 +217,40 @@ EGLBoolean initializeWindow(EGLNativeWindow nativeWindow)
 		EGL_NONE
 	};
 
-	// get EGL display
+	/* get EGL display */
 	display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 	if (display == EGL_NO_DISPLAY)
 	{
 		return EGL_FALSE;
 	}
 
-	// init EGL display
+	/* init EGL display */
 	if (!eglInitialize(display, &majorVersion, &minorVersion))
 	{
 		return EGL_FALSE;
 	}
 
-	// check and choose EGL config
+	/* check and choose EGL config */
 	if (!eglChooseConfig(display, configAttribs, &config, 1, &numConfigs))
 	{
 		return EGL_FALSE;
 	}
 
-	// create EGL surface
+	/* create EGL surface */
 	surface = eglCreateWindowSurface(display, config, nativeWindow, NULL);
 	if (surface == EGL_NO_SURFACE)
 	{
 		return EGL_FALSE;
 	}
 
-	// cteate EGL context, no context sharing
+	/* cteate EGL context, no context sharing */
 	context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);
 	if (context == EGL_NO_CONTEXT)
 	{
 		return EGL_FALSE;
 	}
 
-	// select context
+	/* select context */
 	if (!eglMakeCurrent(display, surface, surface, context))
 	{
 		return EGL_FALSE;
