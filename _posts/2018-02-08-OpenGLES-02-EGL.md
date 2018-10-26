@@ -260,3 +260,5 @@ EGLBoolean initializeWindow(EGLNativeWindow nativeWindow)
 }
 
 ```
+
+> Reference: 《OpenGL ES 3.0 编程指南》
