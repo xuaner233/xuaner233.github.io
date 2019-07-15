@@ -1,0 +1,9 @@
+
+# Mac auto added file
+.DS_Store
+
+# Temp file
+*~
+
+# Generated site dir
+/_site/
