@@ -18,7 +18,9 @@ tags:
 
 ## Git 工作模式
 
-两张图说明`Git`工作模式(来源见文末链接)：
+一张图说明`Git`工作模式(来源见文末链接)：
+
+![git mode](http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png)
 
 - 代码库相关
 - 配置代码库
