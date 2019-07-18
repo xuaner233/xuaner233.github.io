@@ -10,7 +10,8 @@ catalog:     true
 categories:
     - 实用工具
 tags:
-    - Ubuntu, Git
+    - Ubuntu
+    - Git
 ---
 
 > Git 用的比较多，但有许多常用命令可以使工作更高效，Mark 下来以便查询。

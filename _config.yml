@@ -2,7 +2,7 @@
 title: Xiaoxuan Blog
 SEOTitle: 小旋的博客 | Xiaoxuan Blog
 header-img: imgs/home-bg.jpg
-email: huxpro@gmail.com
+email: xiaoxuan.liu.work@gmail.com
 description: "小旋的世界 | Xiaoxuan world"
 keyword: "Xiaoxuan, blog, 技术笔记"
 url: ""        # your host, for absolute URL
@@ -27,7 +27,7 @@ highlighter: rouge
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
-anchorjs: false                          # if you want to customize anchor. check out line:181 of `post.html`
+anchorjs: false     # if you want to customize anchor. check out line:181 of `post.html`
 
 
 
