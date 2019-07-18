@@ -78,7 +78,7 @@ mBool = bool(mInt);       /* convert int  --> bool  */
 
 继续贴例子：
 
-```
+```c
 vec4 mVec4 = vec4(1.0);             /* { 1.0, 1.0, 1.0, 1.0 } */
 vec3 mVec3 = vec3(1.0, 0.0, 0.5);   /* { 1.0, 0.0, 0.5 }      */
 vec3 tmp   = vec3(mVec3);           /* { 1.0, 0.0, 0.5 }      */
@@ -94,7 +94,7 @@ vec2 mVec2 = vec2(mVec3);           /* { 1.0, 0.0 } */
 
 注：OpenGL ES中的矩阵以**列**优先顺序存储。因此构造矩阵时，参数按列填充矩阵。下例：
 
-```
+```c
 mat3 mMat3 = mat3(1.0, 0.0, 0.0,    /* 1st column */
                   0.0, 1.0, 0.0,    /* 2nd column */
                   0.0, 1.0, 1.0);   /* 3rd column */
@@ -106,7 +106,7 @@ mat3 mMat3 = mat3(1.0, 0.0, 0.0,    /* 1st column */
 
 向量访问有两种形式：1> 使用`.`运算符； 2> 通过数组下标。根据向量分量数量，每个分量可以使用 { x, y, z, w }、{ r, g, b, a }、{ s, t, p, q } 组合进行访问（分别为数学分量、颜色分量和纹理分量坐标系），三种命名方案均可使用。需要注意的是，同一访问只能使用一种命名方式，不能用`.xgr`这样的引用方式。继续放例子：
 
-```
+```c
 vec3 mVec3 = vec3(0.0, 1.0, 2.0);
 vec3 tmp;
 
@@ -117,12 +117,12 @@ tmp = mVec3.zyy;  /* { 2.0, 1.0, 1.0 } */
 
 数组下标访问：元素[0]对应x，元素[1]对应y。矩阵为列优先矩阵，因此矩阵可以看做由列向量组成，即mat2看做两个vec2。因此，矩阵中单独的列可以通过数组下标运算符`[]`来选择，然后每个向量中可以通过`.`运算符访问内容。放例子：
 
-```
+```c
 mat4 mMat4 = mat4(1.0);
 
 vec4 mCol0 = mMat4[0];    /* column 0 of mat4    */
-float m2_1 = mMat4[2][1]  /* 3rd column, 2nd row */
-float m2_2 = mMat4[2].z   /* 3rd column, 3rd row */
+float m2_1 = mMat4[2][1];  /* 3rd column, 2nd row */
+float m2_2 = mMat4[2].z;   /* 3rd column, 3rd row */
 ```
 
 ### 3.2 常量
@@ -134,7 +134,7 @@ float m2_2 = mMat4[2].z   /* 3rd column, 3rd row */
 ### 4.1 结构体
 类C，直接上例子：
 
-```
+```c
 struct fogStruct
 {
 	vec4 color;
@@ -143,8 +143,8 @@ struct fogStruct
 } fogVar;  /* define a new struct forStruct and new var fogVar */
 
 fogVar = fogStruct( vec4(1.0, 2.0, 3.0, 4.0), /* color */
-						0.5,                      /* start */
-						2.0);                     /* end */
+                    0.5,                      /* start */
+                    2.0);                     /* end */
 
 vec4 color  = fogVar.color;
 float start = fogVar.start;
@@ -155,7 +155,7 @@ float end   = fogVar.end;
 
 同样类C，继续放code：
 
-```
+```c
 float fArray[4];
 vec4  vArray[2];   /* 2-D array */
 
@@ -199,9 +199,9 @@ GLSL 函数声明方法与C语言相同，不同之处在于 GLSL 需要提供�
 放个代码例子：
 
 ```c
-vec4 mFunc(inout float mFloat, 	// inout param
-			out vec4 mVec4,		// out param
-			mat3 mMat3)			// in param (default)
+vec4 mFunc(inout float mFloat,  /* inout param */
+           out vec4 mVec4,      /* out param */
+           mat3 mMat3)          /* in param (default) */
 ```
 
 另外，比较重要的一点是：**GLSL函数不能递归！** 因为GPU没有堆栈...
@@ -231,9 +231,9 @@ GLES 中 GLSL 支持 if-else 以及 while or do-while 控制语句，但在Open 
 同一变量在全局作用域中声明，只需要统一限定符即可，放个例子：
 
 ```c
-uniform mat4 viewMatrix
-uniform mat4 projMatrix
-uniform vec3 rotateAngle
+uniform mat4 viewMatrix;
+uniform mat4 projMatrix;
+uniform vec3 rotateAngle;
 ```
 
 从GPU角度看，统一变量通常保存在硬件中（常量存储空间），是GPU为存储常量值而分配的特殊空间。因常量存储空间的大小一般是固定的，所以统一变量的数量也受到限制。我们可以通过內建变量 `gl_MaxVertexUniformVectors` 和 `gl_MaxFragmentUniformVectors` 的值来确定。也可通过 `glGetintegerv()` 查询 `GL_MAX_VERTEX_UNIFORM_VECTORS` 和 `GL_MAX_FRAGMENT_UNIFORM_VECTORS`。
@@ -269,11 +269,11 @@ void main()
 
 uniform mat4 u_matViewProjection;
 
-// Vertex shader input
+/* Vertex shader input */
 layout[location = 0] in vec4 a_position;
 layout[location = 1] in vec3 a_color;
 
-// Vertex shader output
+/* Vertex shader output */
 out vec3 v_color;
 
 void main()
@@ -292,10 +292,10 @@ void main()
 #version 300 es
 precision mediump float;
 
-// Input from vertex shader
+/* Input from vertex shader */
 in vec3 v_color;
 
-// Output of fragment shader
+/* Output of fragment shader */
 layout[location = 0] out vec4 o_fragColor;
 
 void main()
@@ -317,8 +317,8 @@ mediump float specularExp;
 另外，也可在 shader 的开头设置默认精度：
 
 ```c
-precision highp float; // float default is highp
-precision mediump int; // int default is mediump
+precision highp float; /* float default is highp */
+precision mediump int; /* int default is mediump */
 ```
 
 vertex shader中没有指定默认精度，那么`int`和`float`的默认精度都为`highp`，即默认最高精度。而 fragment shader中，浮点值没有精度，因此shader必须声明默认精度或者每个float变量声明时指定精度。
@@ -341,14 +341,14 @@ vertex shader中没有指定默认精度，那么`int`和`float`的默认精度�
 通常情况下，不同shader之间的变量值差异是允许存在的，如果要避免这种差异，则可以用`invariant`限定符声明变量，可以单独指定某个变量或进行全局设置。
 
 ```c
-// set invariant at declration
+/* set invariant at declration */
 invariant varying mediump vec3 color;
 
-// set invariant after declration
+/* set invariant after declration */
 varying mediump vec3 color;
 invariant color;
 
-// set all output variant with invariant
+/* set all output variant with invariant */
 #pragma STDGL invariant(all)
 ```
 
