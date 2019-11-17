@@ -7,7 +7,7 @@ author:      "Xiaoxuan Liu"
 header-img:  "imgs/OpenGL-ES3/logo.png"
 header-mask: 0.3
 catalog:     true
-categories:
+categories:s
     - Graphic
 tags:
     - OpenGL ES
@@ -416,6 +416,25 @@ uniform vec3 vec;
 | 错误 | #error |
 | 编译器 | #pragma |
 | 拓展| #extension，用于启用和设置拓展行为|
+
+shader语言的预处理器命令同样类C，因此不做展开。这里着重说一下 `#extension` 拓展指令，代码示例如下：
+
+```
+/* set behaviour for an extension */
+#extension extension_name : behavior
+
+/* set behaviour for all extensions */
+#extension all : behavior
+```
+
+第一个参数是拓展名(e.g. GL_EXT_disjoint_timer_query)或者 `all`，第二个参数表示行为，有下列选项：
+
+| 拓展行为 | 描述 |
+| :---: | --- |
+| require| 扩展是必须的，若预处理时不支持该拓展则抛出错误。若拓展为all, 则总是抛出错误 |
+| enable | 启用拓展，若拓展不支持则抛出警告。若拓展为all，则总是抛出错误 |
+| warn | 对拓展的任何使用均警告，除非该拓展是另一个已经启用的拓展所必需的。若指定all，则所有拓展使用时都将警告，而且，如果拓展不受支持，将抛出警告 |
+| disable | 禁用拓展。若指定all，则禁用所有拓展 |
 
 
 > Reference: 《OpenGL ES 3.0 编程指南》
