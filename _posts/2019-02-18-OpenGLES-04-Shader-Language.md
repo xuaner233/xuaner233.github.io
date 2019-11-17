@@ -7,7 +7,7 @@ author:      "Xiaoxuan Liu"
 header-img:  "imgs/OpenGL-ES3/logo.png"
 header-mask: 0.3
 catalog:     true
-categories:s
+categories:
     - Graphic
 tags:
     - OpenGL ES
