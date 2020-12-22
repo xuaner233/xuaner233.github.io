@@ -194,7 +194,87 @@ glVertexAttribPointer(VERTEX_TEXCOORD1_IDX, VERTEX_TEXCOORD1_SIZE,
 
 `type`指定数据类型，同样也会影响数据存储空间大小，进而影响整体性能。这个会影响渲染帧所需内存带宽，数据越少，所需带宽越小，性能越好。`GLES 3.0` 支持 `GL_HALF_FLOAT` 数据格式，因此在不影响精度的情况下，建议尽量使用 `GL_HALF_FLOAT` 来减小带宽（纹理坐标、法线、副法线、切向量等）。颜色可以存储为`GL_UNSIGNED_BYTE`，
 
-## 2. 顶点缓冲区对象
+## 2. 顶点属性变量使用：声明
+
+### layout 限定符
+
+```
+layout (location = N)
+// Example:
+layout (location = 0) in vec4 a_position;
+```
+
+### Attrib 相关 API
+
+```
+void glGetActiveAttrib(GLuint program, GLuint index, GLsizei bufsize, GLsizei *length, GLenum *type, GLint *size, GLchar *name)
+void glBindAttribLocation(GLuint program, GLuint index, const GLchar *name)
+GLint glGetAttribLocation(GLuint program, const GLchar *name)
+```
+
+## 3. 顶点缓冲区对象
+
+### 优劣分析
+
+顶点数据是保存在用户内存中的，在用 `glDrawArrays` 或者 `glDrawElements` 进行绘制时，需要从用户内存中复制顶点数据到图形内存（GPU Mem）。但是，并不是所有的drawcall都需要即时更新顶点数据，因此将顶点数据缓存是一个不错的选择，这就是顶点缓冲区对象的由来。好处：
+
+- 显著改进渲染功能
+- 降低内存带宽
+- 降低功耗（低带宽）
+
+OpenGL ES 3.0支持两类缓冲区对象：数组缓冲区对象和元素数组缓冲区对象，分别用于指定顶点和图元数据。
+
+- GL\_ARRAY_BUFFER: 指定的数组缓冲区对象用户创建保存顶点数据的缓冲区对象
+- GL\_ELEMENT\_ARRAY_BUFFER：指定的元素数组缓冲区对象用于创建保存图元索引的缓冲区对象
+
+### 缓冲区对象相关 API
+
+```
+void glGenBuffers(GLsizei n, GLuint *buffers)
+void glBindBuffer(GLenum target, GLuint buffer)
+void glBufferData(GLenum target, GLsizeiptr size, const void *data, GLenum usage)
+void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void *data)
+void glDeleteBuffers(GLsizei n, const GLuint *buffers)
+```
+
+### 映射缓冲区对象
+
+有时候，我们需要将缓冲区对象数据Map出来，考虑如下情况（好处）：
+
+- 减少App的内存占用，如果映射出来，则只需要存储一个数据副本即可
+- 在共享内存架构中，映射缓冲区可返回GPU缓冲区中地址空间的直接指针
+
+总之，就是可以直接从GPU拿到数据使用。但是请注意：Map之后，操作的是GPU缓冲区，需慎重！
+
+列一下相关API：
+
+```
+void *glMapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
+GLboolean glUnmapBuffer(GLenum target)
+void *glFlushMappedBufferRange(GLenum target, GLintptr offset, GLsizeptr length)
+```　
+
+### 复制缓冲区对象
+
+```
+void glCopyBuffersSubData(GLenum readtarget, GLenum writetarget)
+```
+
+## 4. 顶点数组对象
+
+加载顶点属性的两种方式：顶点数组和顶点缓冲区对象，都会在过程中（可能多次）调用 `glBindBuffer`、`glVertexAttribPointer` 和 `glEnableVertexAttribArray`。那么，为了更快/更方便的在顶点数组配置之间切换，OpenGL ES 3.0中引入了“顶点数组对象(VAO)”的概念，提供包含在顶点数组/缓冲区对象配置之间切换所需要的所有状态的单一对象。
+
+Spec中，当前总有一个Active的顶点数组对象，即默认VAO（ID为0）。概念清楚后，直接列相关API：
+
+```
+void glGenVertexArrays(GLsizei n, GLuint *arrays)
+void glBindVertexArray(GLuint array)
+void glDeleteVertexArrays(GLsizei n, GLuint *arrays)
+```
+
+### 小结
+
+其实对于顶点属性，了解并搞清楚概念是关键，其余的（顶点数组/缓冲区对象/数组对象等）都是为了更好的使用顶点属性而服务。所以，理解顶点属性便理解了上面的所有源头。
 
 
 > Reference: 《OpenGL ES 3.0 编程指南》
