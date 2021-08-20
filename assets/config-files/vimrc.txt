@@ -1,0 +1,218 @@
+
+" ---------------
+" Vbundle
+" ---------------
+set nocompatible
+
+filetype off
+
+set encoding=utf-8
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'https://github.com/ycm-core/YouCompleteMe.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+
+" Set color theme to 'monokai'
+colorscheme monokai
+syntax enable
+
+set mouse=a
+set splitright
+
+" show line number
+set nu
+
+" syntax
+syntax enable
+
+set ruler
+
+set ignorecase
+
+" set report=0
+
+" hilight searching
+set hlsearch
+
+" more powerful backspacing
+set backspace=indent,eol,start
+
+" indent related
+set autoindent
+" show existing tab with 4 spaces width
+set tabstop=4
+
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+
+" On pressing tab, insert 4 spaces
+" set expandtab
+
+set cursorline
+set cursorcolumn
+:hi CursorLine   cterm=NONE ctermbg=235 ctermfg=NONE guibg=gray guifg=NONE
+:hi CursorColumn cterm=NONE ctermbg=235 ctermfg=NONE guibg=gray guifg=NONE
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+" highlight tailing spaces
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
+
+" in split window mode, change shortcut from 'c+w, c+jkhl' to 'c+jkhl'
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" set the bg transparent
+hi Normal guibg=NONE ctermbg=NONE
+
+" always show the status line
+set laststatus=2
+
+set statusline=   " clear the statusline for when vimrc is reloaded
+set statusline+=%-3.3n\                      " buffer number
+set statusline+=%<                           " truncation filename
+set statusline+=%F\                          " file name
+set statusline+=%h%m%r%w                     " flags
+set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
+set statusline+=%{&fileformat}]              " file format
+set statusline+=%=                           " right align options after
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
+set statusline+=%b,0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+
+
+" ------------
+"  ctags part
+" ------------
+" generate the ctags with Ctrl+F12 
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" lookup tags in current dir or upper layer
+set tags=tags;
+
+" ------------
+" cscope part
+" ------------
+set cscopetag
+set csto=0
+set cst
+
+if filereadable("cscope.out")
+   cs add cscope.out
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
+
+set cscopeverbose
+
+" find symbol
+nmap zs :cs find s <C-R>=expand("<cword>")<CR><CR>
+" find defination
+nmap zg :cs find g <C-R>=expand("<cword>")<CR><CR>
+" find usage, funcs called this func
+nmap zc :cs find c <C-R>=expand("<cword>")<CR><CR>
+" find string
+nmap zt :cs find t <C-R>=expand("<cword>")<CR><CR>
+" find with grep, similar to egrep
+nmap ze :cs find e <C-R>=expand("<cword>")<CR><CR>
+" find file
+nmap zf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" find files include current file
+nmap zi :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
+" find functions called by this func
+nmap zd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" -------------
+" taglist part
+" -------------
+" map shortcut to "F7"
+nmap <F7> :TlistToggle<CR><CR>
+
+" open the taglist window on vim startup
+let Tlist_Auto_Open=0
+
+" just show the current file
+let Tlist_Show_One_File=1
+
+" exit vim when only taglist window
+let Tlist_Exit_OnlyWindow=1
+
+" set update time to 100ms
+set ut=100
+
+" -------------
+" Source Explorer part
+" -------------
+" map shortcut to "F8"
+nmap <F8> :SrcExplToggle<CR>
+
+" set the height of window
+let g:SrcExpl_winHeight = 8
+
+" Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100
+
+" Set "Enter" key to jump into the exact definition context
+let g:SrcExpl_jumpKey = "<ENTER>"
+
+" Set "Space" key for back from the definition context
+let g:SrcExpl_gobackKey = "<SPACE>"
+
+" In order to avoid conflicts, the Source Explorer should know what plugins
+" except itself are using buffers. And you need add their buffer names into
+" below listaccording to the command ":buffers!"
+let g:SrcExpl_pluginList = [
+    \ "__Tag_List__",
+    \ "_NERD_tree_"
+    \]
+
+
+" -------------
+" Trinity part
+" -------------
+
+" Open and close all the three plugins on the same time
+nmap <F10>   :TrinityToggleAll<CR>
+
+" -------------
+" NERDTree part
+" -------------
+" map shortcut to "F9"
+nmap <F9> :NERDTreeToggle<CR><CR>
+
+" set the window right side
+let g:NERDTreeWinPos="right"
+
+" set the window size
+let g:NERDTreeWinSize=31
+
+" auto change dir to current dir
+" let NERDTreeChDirMode=2
+
+let g:NERDTreeDirArrows=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" make the vimrc change right after save
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
