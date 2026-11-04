@@ -6,7 +6,6 @@
 *~
 
 # Generated site dirs
-/_site/
 /build/
 /.docusaurus/
 /node_modules/

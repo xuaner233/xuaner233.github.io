@@ -17,4 +17,4 @@ Run `npm run build` to generate the production site in `build/`, and `npm run se
 
 The GitHub Actions workflow builds and deploys the site when changes are pushed to `master`. In the repository's Pages settings, select **GitHub Actions** as the source.
 
-Posts are stored in `blog/` and static assets in `static/`. The original Jekyll source is retained for reference; it is not used to build the site.
+Posts are stored in `blog/` and static assets in `static/`.
