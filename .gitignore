@@ -5,5 +5,8 @@
 # Temp file
 *~
 
-# Generated site dir
+# Generated site dirs
 /_site/
+/build/
+/.docusaurus/
+/node_modules/
