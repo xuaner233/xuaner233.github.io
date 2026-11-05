@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=10240]
+  - repo: local
+    hooks:
+      - id: biome-lint
+        name: Biome lint
+        entry: npm run lint
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: npm-audit
+        name: npm audit (high and critical)
+        entry: npm audit --audit-level=high
+        language: system
+        pass_filenames: false
+        always_run: true
