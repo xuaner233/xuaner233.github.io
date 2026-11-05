@@ -2,9 +2,9 @@
 title: About
 ---
 
-> 欢迎来到小旋的世界
+English | [中文](/about/zh)
 
-## 世界那么大，有空多出去走走
+> Welcome to Xiaoxuan's world.
 
 ## Xiaoxuan Liu
 

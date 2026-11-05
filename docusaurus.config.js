@@ -9,14 +9,27 @@ const config = {
   organizationName: 'xuaner233',
   projectName: 'xuaner233.github.io',
   onBrokenLinks: 'throw',
-  markdown: {format: 'md'},
+  markdown: {format: 'detect'},
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        createRedirects(existingPath) {
+          if (existingPath.startsWith('/blog/')) {
+            return existingPath.slice('/blog'.length);
+          }
+          return undefined;
+        },
+      },
+    ],
+  ],
   presets: [
     [
       'classic',
       {
-        docs: false,
+        docs: {sidebarPath: './sidebars.js'},
         blog: {
-          routeBasePath: '/',
+          routeBasePath: '/blog',
           blogTitle: "Xiaoxuan's World",
           blogDescription: 'Notes and discoveries by Xiaoxuan',
           showReadingTime: true,
@@ -31,14 +44,26 @@ const config = {
     navbar: {
       title: "Xiaoxuan's World",
       items: [
-        {to: '/archive', label: 'Archive', position: 'left'},
-        {to: '/tags', label: 'Tags', position: 'left'},
+        {to: '/docs', label: 'Docs', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/about', label: 'About', position: 'left'},
         {href: 'https://github.com/xuaner233', label: 'GitHub', position: 'right'},
       ],
     },
     footer: {
       style: 'dark',
+      links: [
+        {
+          title: 'Explore',
+          items: [
+            {label: 'Docs', to: '/docs'},
+            {label: 'Blog', to: '/blog'},
+            {label: 'Archive', to: '/blog/archive'},
+            {label: 'Tags', to: '/blog/tags'},
+            {label: 'About', to: '/about'},
+          ],
+        },
+      ],
       copyright: `Copyright © ${new Date().getFullYear()} Xiaoxuan Liu.`,
     },
   },
