@@ -1,0 +1,51 @@
+.hero {
+  position: relative;
+  min-height: 680px;
+  padding: clamp(6rem, 11vw, 11rem) clamp(2rem, 7vw, 8rem) 7rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #080916;
+  background-image:
+    linear-gradient(90deg, rgba(8, 9, 22, 0.96) 0%, rgba(8, 9, 22, 0.8) 38%, rgba(8, 9, 22, 0.15) 100%),
+    url('/imgs/m33-nasa-original.jpg');
+  background-size: cover;
+  background-position: center, center 48%;
+  color: #f4f6ff;
+}
+
+.heroContent { position: relative; z-index: 1; max-width: 48rem; }
+.eyebrow { color: var(--ifm-color-primary); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.18em; }
+.hero .eyebrow { color: #a9bcff; }
+.hero h1 { margin: 1.5rem 0; font-size: clamp(3.2rem, 6.2vw, 6rem); line-height: 1.05; letter-spacing: -0.055em; }
+.hero h1 span { color: #b5c7ff; }
+.intro { max-width: 34rem; color: #c5cbe1; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+.primaryButton, .secondaryButton { display: inline-flex; align-items: center; gap: 2rem; padding: 0.85rem 1.2rem; border-radius: 0.3rem; font-weight: 700; text-decoration: none; }
+.primaryButton, .primaryButton:hover { color: #121a3b; background: #b9caff; }
+.secondaryButton, .secondaryButton:hover { color: #f4f6ff; border: 1px solid #8794bc; }
+.primaryButton:hover, .secondaryButton:hover { text-decoration: none; transform: translateY(-2px); }
+.credit { position: absolute; right: clamp(1rem, 3vw, 3rem); bottom: 1rem; left: clamp(1rem, 3vw, 3rem); margin: 0; text-align: right; font-size: 0.7rem; line-height: 1.4; color: #fff; text-shadow: 0 1px 4px #000; }
+.credit a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.credit a:hover { color: #fff; }
+.discover { padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 7vw, 8rem); background: var(--ifm-background-color); }
+.sectionHeading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
+.sectionHeading h2 { margin: 0; font-size: clamp(2rem, 3.5vw, 3.5rem); letter-spacing: -0.04em; }
+.sectionHeading > p { max-width: 23rem; margin: 0; color: var(--ifm-color-emphasis-700); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ifm-color-emphasis-300); border-bottom: 1px solid var(--ifm-color-emphasis-300); }
+.card { min-height: 15rem; display: flex; flex-direction: column; padding: 2rem; color: var(--ifm-font-color-base); text-decoration: none; }
+.card + .card { border-left: 1px solid var(--ifm-color-emphasis-300); }
+.card:hover { color: var(--ifm-color-primary); text-decoration: none; background: var(--ifm-color-emphasis-100); }
+.cardNumber { color: var(--ifm-color-primary); font-size: 0.8rem; font-weight: 700; }
+.card h3 { margin: 1.25rem 0 0.5rem; font-size: 1.7rem; }
+.card p { max-width: 20rem; color: var(--ifm-color-emphasis-700); }
+.cardLink { margin-top: auto; font-weight: 700; }
+.cardLink span { margin-left: 0.5rem; }
+@media (max-width: 768px) {
+  .hero { min-height: 620px; padding-top: 5rem; background-position: center, 58% center; }
+  .credit { text-align: left; }
+  .sectionHeading { align-items: start; flex-direction: column; }
+  .cards { grid-template-columns: 1fr; }
+  .card + .card { border-left: 0; border-top: 1px solid var(--ifm-color-emphasis-300); }
+  .card { min-height: 13rem; padding: 1.5rem 0; }
+}
