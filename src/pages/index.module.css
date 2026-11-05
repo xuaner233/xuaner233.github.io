@@ -8,7 +8,7 @@
   background-color: #080916;
   background-image:
     linear-gradient(90deg, rgba(8, 9, 22, 0.96) 0%, rgba(8, 9, 22, 0.8) 38%, rgba(8, 9, 22, 0.15) 100%),
-    url('/imgs/m33-nasa-original.jpg');
+    url('/imgs/m33-nasa.webp');
   background-size: cover;
   background-position: center, center 48%;
   color: #f4f6ff;
@@ -18,7 +18,6 @@
 .eyebrow { color: var(--ifm-color-primary); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.18em; }
 .hero .eyebrow { color: #a9bcff; }
 .hero h1 { margin: 1.5rem 0; font-size: clamp(3.2rem, 6.2vw, 6rem); line-height: 1.05; letter-spacing: -0.055em; }
-.hero h1 span { color: #b5c7ff; }
 .intro { max-width: 34rem; color: #c5cbe1; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; }
 .actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
 .primaryButton, .secondaryButton { display: inline-flex; align-items: center; gap: 2rem; padding: 0.85rem 1.2rem; border-radius: 0.3rem; font-weight: 700; text-decoration: none; }
@@ -41,11 +40,12 @@
 .card p { max-width: 20rem; color: var(--ifm-color-emphasis-700); }
 .cardLink { margin-top: auto; font-weight: 700; }
 .cardLink span { margin-left: 0.5rem; }
+.hero h1 span { color: #b5c7ff; }
 @media (max-width: 768px) {
   .hero { min-height: 620px; padding-top: 5rem; background-position: center, 58% center; }
   .credit { text-align: left; }
   .sectionHeading { align-items: start; flex-direction: column; }
   .cards { grid-template-columns: 1fr; }
-  .card + .card { border-left: 0; border-top: 1px solid var(--ifm-color-emphasis-300); }
   .card { min-height: 13rem; padding: 1.5rem 0; }
+  .card + .card { border-left: 0; border-top: 1px solid var(--ifm-color-emphasis-300); }
 }
